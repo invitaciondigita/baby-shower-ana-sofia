@@ -53,7 +53,6 @@
       text-align: center;
     }
 
-    /* Mariposas distribuidas */
     .mariposa-top-izq {
       position: absolute;
       top: 16px;
@@ -86,7 +85,7 @@
 
     .mariposa-footer-izq {
       position: absolute;
-      bottom: 185px;
+      bottom: 215px;
       left: 18px;
       width: 50px;
       opacity: 0.82;
@@ -94,7 +93,6 @@
       pointer-events: none;
     }
 
-    /* Conejita lateral bajada justo a la división de la mariposa */
     .coneja-lateral {
       position: absolute;
       left: -14px;
@@ -134,10 +132,9 @@
       box-shadow: 0 6px 20px rgba(212, 132, 148, 0.12);
     }
 
-    /* Conejita de arriba bien grande con manitas apoyadas en el borde blanco */
     .coneja-encabezado-caja {
       position: absolute;
-      top: -170px;
+      top: -158px;
       left: 50%;
       transform: translateX(-50%);
       width: 390px;
@@ -305,31 +302,34 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Cierre final con coneja grande a la izquierda y texto centrado dentro del marco */
-.cierre-final {
+    .cierre-final {
       margin-top: auto;
-      padding-top: 10px;
+      padding-top: 25px;
+      padding-bottom: 15px;
       width: 100%;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       position: relative;
+      min-height: 195px;
     }
 
     .coneja-footer {
-      width: 310px;
-      flex-shrink: 0;
-      margin-left: -105px;
-      margin-right: -55px;
+      position: absolute;
+      left: -135px;
+      bottom: -20px;
+      width: 285px;
+      pointer-events: none;
     }
 
     .texto-esperamos {
       font-family: 'Alex Brush', cursive;
-      font-size: 2.3rem;
+      font-size: 2.65rem;
       line-height: 1.05;
       color: var(--rosa-texto);
       transform: rotate(-4deg);
       text-align: center;
+      margin-left: 75px;
     }
   </style>
 </head>
