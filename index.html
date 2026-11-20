@@ -53,6 +53,7 @@
       text-align: center;
     }
 
+    /* Mariposas distribuidas */
     .mariposa-top-izq {
       position: absolute;
       top: 16px;
@@ -73,11 +74,32 @@
       pointer-events: none;
     }
 
+    .mariposa-lista-der {
+      position: absolute;
+      bottom: 245px;
+      right: 14px;
+      width: 54px;
+      opacity: 0.85;
+      transform: rotate(18deg);
+      pointer-events: none;
+    }
+
+    .mariposa-footer-izq {
+      position: absolute;
+      bottom: 185px;
+      left: 18px;
+      width: 50px;
+      opacity: 0.82;
+      transform: rotate(-18deg);
+      pointer-events: none;
+    }
+
+    /* Conejita lateral bajada justo a la división de la mariposa */
     .coneja-lateral {
       position: absolute;
-      left: -13px;
-      top: 565px;
-      width: 155px;
+      left: -14px;
+      top: 675px;
+      width: 170px;
       z-index: 3;
       pointer-events: none;
     }
@@ -104,20 +126,21 @@
     .bloque-formulario {
       position: relative;
       width: 100%;
-      margin-top: 138px;
+      margin-top: 165px;
       background: var(--blanco-traslucido);
       border: 1.5px solid var(--rosa-suave);
       border-radius: 22px;
-      padding: 36px 20px 26px;
+      padding: 48px 20px 26px;
       box-shadow: 0 6px 20px rgba(212, 132, 148, 0.12);
     }
 
+    /* Conejita de arriba bien grande con manitas apoyadas en el borde blanco */
     .coneja-encabezado-caja {
       position: absolute;
       top: -158px;
       left: 50%;
       transform: translateX(-50%);
-      width: 275px;
+      width: 390px;
       z-index: 3;
       pointer-events: none;
     }
@@ -282,9 +305,10 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Cierre final con coneja grande a la izquierda y texto centrado dentro del marco */
     .cierre-final {
       margin-top: auto;
-      padding-top: 14px;
+      padding-top: 10px;
       width: 100%;
       display: flex;
       align-items: center;
@@ -293,19 +317,20 @@
     }
 
     .coneja-footer {
-      width: 235px;
+      width: 310px;
       flex-shrink: 0;
-      margin-left: -38px;
-      margin-right: -12px;
+      margin-left: -78px;
+      margin-right: -35px;
     }
 
     .texto-esperamos {
       font-family: 'Alex Brush', cursive;
-      font-size: 2.35rem;
+      font-size: 2.3rem;
       line-height: 1.05;
       color: var(--rosa-texto);
       transform: rotate(-4deg);
-      padding-right: 12px;
+      text-align: center;
+      padding-right: 8px;
     }
   </style>
 </head>
@@ -315,6 +340,8 @@
     <div class="marco-exterior">
       <img src="BackgroundEraser_20261119_110434001.png" alt="" class="mariposa-top-izq">
       <img src="BackgroundEraser_20261119_063849598.png" alt="" class="mariposa-top-der">
+      <img src="BackgroundEraser_20261119_063849598.png" alt="" class="mariposa-lista-der">
+      <img src="BackgroundEraser_20261119_110434001.png" alt="" class="mariposa-footer-izq">
       <img src="BackgroundEraser_20261119_103618487.png" alt="Conejita" class="coneja-lateral">
 
       <p class="subtitulo-top">Mesa de Regalitos</p>
