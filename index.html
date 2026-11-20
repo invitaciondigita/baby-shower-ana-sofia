@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesa de Regalitos - Ana Sofía</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-crema: #F7ECEE;
+      --rosa-texto: #D48494;
+      --rosa-suave: #EAB8C2;
+      --rosa-borde: #DFA3B0;
+      --cafe-texto: #5A4A48;
+      --blanco-traslucido: rgba(255, 255, 255, 0.78);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #EFE2E5;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--cafe-texto);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .tarjeta-web {
+      width: 100%;
+      max-width: 480px;
+      background: linear-gradient(180deg, #F8EEF0 0%, #F5E6E9 50%, #F8EEF0 100%);
+      position: relative;
+      padding: 18px;
+      overflow-x: hidden;
+      box-shadow: 0 10px 35px rgba(90, 74, 72, 0.12);
+    }
+
+    .marco-exterior {
+      border: 1.5px solid var(--rosa-borde);
+      padding: 36px 22px 45px;
+      position: relative;
+      min-height: calc(100vh - 36px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .mariposa-top-izq {
+      position: absolute;
+      top: 18px;
+      left: 14px;
+      width: 58px;
+      opacity: 0.9;
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+
+    .mariposa-top-der {
+      position: absolute;
+      top: 115px;
+      right: 12px;
+      width: 46px;
+      opacity: 0.85;
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+
+    .coneja-lateral {
+      position: absolute;
+      left: -14px;
+      top: 235px;
+      width: 82px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .subtitulo-top {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.88rem;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--cafe-texto);
+      margin-bottom: 4px;
+    }
+
+    .nombre-bebe {
+      font-family: 'Alex Brush', cursive;
+      font-size: 2.9rem;
+      line-height: 1.05;
+      color: var(--rosa-texto);
+      font-weight: 400;
+      margin-bottom: 22px;
+      text-shadow: 0 1px 2px rgba(212, 132, 148, 0.15);
+    }
+
+    .bloque-formulario {
+      position: relative;
+      width: 100%;
+      margin-top: 46px;
+      background: var(--blanco-traslucido);
+      border: 1.5px solid var(--rosa-suave);
+      border-radius: 22px;
+      padding: 58px 20px 26px;
+      box-shadow: 0 6px 20px rgba(212, 132, 148, 0.12);
+    }
+
+    .coneja-encabezado-caja {
+      position: absolute;
+      top: -54px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 96px;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .mensaje-intro {
+      font-size: 1.05rem;
+      line-height: 1.48;
+      color: var(--cafe-texto);
+      margin-bottom: 20px;
+    }
+
+    .campo-grupo {
+      text-align: left;
+      margin-bottom: 14px;
+    }
+
+    .campo-grupo label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--rosa-texto);
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .campo-grupo input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--rosa-suave);
+      border-radius: 12px;
+      background-color: #FFFDFD;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+      color: var(--cafe-texto);
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+
+    .campo-grupo input:focus {
+      border-color: var(--rosa-texto);
+      box-shadow: 0 0 0 3px rgba(212, 132, 148, 0.18);
+    }
+
+    .btn-registrar {
+      width: 100%;
+      margin-top: 8px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, #E49BA9 0%, #D48494 100%);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 25px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(212, 132, 148, 0.35);
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .btn-registrar:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
+    }
+
+    .btn-registrar:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .estado-mensaje {
+      margin-top: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      color: var(--rosa-texto);
+      min-height: 18px;
+    }
+
+    .separador {
+      margin: 28px 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .separador span {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, transparent, var(--rosa-borde), transparent);
+    }
+
+    .separador img {
+      width: 34px;
+      opacity: 0.85;
+    }
+
+    .titulo-lista {
+      font-family: 'Alex Brush', cursive;
+      font-size: 2.35rem;
+      color: var(--rosa-texto);
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .sub-lista {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      color: #7D6B69;
+      margin-bottom: 16px;
+    }
+
+    .lista-regalos {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .item-regalo {
+      background: var(--blanco-traslucido);
+      border: 1px solid var(--rosa-suave);
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      animation: aparecer 0.35s ease;
+    }
+
+    .item-regalo .nombre-regalo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--cafe-texto);
+    }
+
+    .item-regalo .quien-lleva {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      color: var(--rosa-texto);
+      margin-top: 2px;
+    }
+
+    .badge-reservado {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.68rem;
+      background-color: #F6E2E6;
+      color: var(--rosa-texto);
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .cierre-final {
+      margin-top: auto;
+      padding-top: 10px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+    }
+
+    .coneja-footer {
+      width: 118px;
+      flex-shrink: 0;
+    }
+
+    .texto-esperamos {
+      font-family: 'Alex Brush', cursive;
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--rosa-texto);
+      transform: rotate(-4deg);
+    }
+  </style>
+</head>
+<body>
+
+  <main class="tarjeta-web">
+    <div class="marco-exterior">
+      <img src="mariposa-abierta.png" alt="" class="mariposa-top-izq">
+      <img src="mariposa-lado.png" alt="" class="mariposa-top-der">
+      <img src="coneja-asomada.png" alt="Conejita" class="coneja-lateral">
+
+      <p class="subtitulo-top">Mesa de Regalitos</p>
+      <h1 class="nombre-bebe">Ana Sofía<br>Serrato Vanegas</h1>
+
+      <section class="bloque-formulario">
+        <img src="coneja-arriba.png" alt="Conejita tierna" class="coneja-encabezado-caja">
+
+        <p class="mensaje-intro">
+          Tu compañía ilumina este momento tan especial y hace que la espera sea aún más feliz. Si deseas traerle un detallito a nuestra bebé, anótalo aquí abajo para que no se repitan los obsequios; será recibido con todo el amor del mundo.
+        </p>
+
+        <form id="formRegalo">
+          <div class="campo-grupo">
+            <label for="invitado">Tu nombre</label>
+            <input type="text" id="invitado" placeholder="Ej: Familia Gómez / Tía Laura" required>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="regalo">¿Qué detallito le llevarás?</label>
+            <input type="text" id="regalo" placeholder="Ej: Pañales etapa 1, cobijita, ropita..." required>
+          </div>
+
+          <button type="submit" class="btn-registrar" id="btnEnviar">Registrar mi regalito</button>
+          <p class="estado-mensaje" id="estadoMensaje"></p>
+        </form>
+      </section>
+
+      <div class="separador">
+        <span></span>
+        <img src="mariposa-abierta.png" alt="">
+        <span></span>
+      </div>
+
+      <h2 class="titulo-lista">Regalitos anotados</h2>
+      <p class="sub-lista">Así nos ayudas a que cada detalle sea único</p>
+
+      <div class="lista-regalos" id="listaRegalos">
+        <p class="sub-lista">Cargando regalitos...</p>
+      </div>
+
+      <footer class="cierre-final">
+        <img src="coneja-saludando.png" alt="Conejita bailarina" class="coneja-footer">
+        <div class="texto-esperamos">¡Te<br>esperamos!</div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzS109GTS-gU3BCxTmCN19AJudj5YRaamHtdFGMsuIPj25-iHExYLxvAFaftlVSDoy7TQ/exec";
+
+    const form = document.getElementById("formRegalo");
+    const btnEnviar = document.getElementById("btnEnviar");
+    const estadoMensaje = document.getElementById("estadoMensaje");
+    const listaRegalos = document.getElementById("listaRegalos");
+
+    async function cargarRegalos() {
+      try {
+        const res = await fetch(SCRIPT_URL);
+        const datos = await res.json();
+
+        if (datos.length === 0) {
+          listaRegalos.innerHTML = `<p class="sub-lista">Aún no hay regalitos anotados. ¡Sé el primero!</p>`;
+          return;
+        }
+
+        listaRegalos.innerHTML = "";
+        datos.reverse().forEach(item => {
+          const div = document.createElement("div");
+          div.className = "item-regalo";
+          div.innerHTML = `
+            <div>
+              <div class="nombre-regalo">🎀 ${escaparHTML(item.regalo)}</div>
+              <div class="quien-lleva">Llevado por: ${escaparHTML(item.invitado)}</div>
+            </div>
+            <span class="badge-reservado">Anotado</span>
+          `;
+          listaRegalos.appendChild(div);
+        });
+      } catch (error) {
+        listaRegalos.innerHTML = `<p class="sub-lista">No se pudo cargar la lista en este momento.</p>`;
+      }
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const invitado = document.getElementById("invitado").value.trim();
+      const regalo = document.getElementById("regalo").value.trim();
+
+      if (!invitado || !regalo) return;
+
+      btnEnviar.disabled = true;
+      btnEnviar.textContent = "Guardando...";
+      estadoMensaje.textContent = "";
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ invitado, regalo })
+        });
+
+        form.reset();
+        estadoMensaje.textContent = "¡Listo! Tu regalito quedó registrado con mucho amor.";
+        setTimeout(cargarRegalos, 1200);
+      } catch (error) {
+        estadoMensaje.textContent = "Hubo un error al guardar. Intenta de nuevo.";
+      } finally {
+        btnEnviar.disabled = false;
+        btnEnviar.textContent = "Registrar mi regalito";
+      }
+    });
+
+    function escaparHTML(texto) {
+      const div = document.createElement("div");
+      div.textContent = texto;
+      return div.innerHTML;
+    }
+
+    cargarRegalos();
+  </script>
+</body>
+</html>
