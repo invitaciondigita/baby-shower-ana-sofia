@@ -65,7 +65,7 @@
 
     .mariposa-top-der {
       position: absolute;
-      top: 115px;
+      top: 118px;
       right: 10px;
       width: 60px;
       opacity: 0.88;
@@ -73,12 +73,12 @@
       pointer-events: none;
     }
 
-    /* Conejita asomándose pegada exactamente a la línea izquierda */
+    /* Conejita lateral bajada a la altura de la división con la mariposa */
     .coneja-lateral {
       position: absolute;
       left: -13px;
-      top: 200px;
-      width: 145px;
+      top: 565px;
+      width: 155px;
       z-index: 3;
       pointer-events: none;
     }
@@ -98,28 +98,29 @@
       line-height: 1.05;
       color: var(--rosa-texto);
       font-weight: 400;
-      margin-bottom: 22px;
+      margin-bottom: 10px;
       text-shadow: 0 1px 2px rgba(212, 132, 148, 0.15);
     }
 
+    /* Recuadro blanco bajado para dar espacio a la coneja y con menos relleno superior */
     .bloque-formulario {
       position: relative;
       width: 100%;
-      margin-top: 96px;
+      margin-top: 138px;
       background: var(--blanco-traslucido);
       border: 1.5px solid var(--rosa-suave);
       border-radius: 22px;
-      padding: 72px 20px 26px;
+      padding: 36px 20px 26px;
       box-shadow: 0 6px 20px rgba(212, 132, 148, 0.12);
     }
 
-    /* Conejita de arriba del recuadro bien grande y asentada en el borde */
+    /* Conejita de arriba del mismo tamaño pero más arriba sobre el borde */
     .coneja-encabezado-caja {
       position: absolute;
-      top: -113px;
+      top: -158px;
       left: 50%;
       transform: translateX(-50%);
-      width: 375px;
+      width: 275px;
       z-index: 3;
       pointer-events: none;
     }
@@ -201,7 +202,7 @@
     }
 
     .separador {
-      margin: 28px 0 18px;
+      margin: 34px 0 18px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -284,29 +285,31 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Cierre final con coneja más grande y texto bien centrado dentro del marco */
     .cierre-final {
       margin-top: auto;
-      padding-top: 10px;
+      padding-top: 14px;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
       position: relative;
     }
 
     .coneja-footer {
-      width: 195px;
+      width: 235px;
       flex-shrink: 0;
-      margin-left: -14px;
+      margin-left: -38px;
+      margin-right: -12px;
     }
 
     .texto-esperamos {
       font-family: 'Alex Brush', cursive;
-      font-size: 2.75rem;
-      line-height: 1;
+      font-size: 2.35rem;
+      line-height: 1.05;
       color: var(--rosa-texto);
       transform: rotate(-4deg);
+      padding-right: 12px;
     }
   </style>
 </head>
@@ -370,6 +373,77 @@
     const form = document.getElementById("formRegalo");
     const btnEnviar = document.getElementById("btnEnviar");
     const estadoMensaje = document.getElementById("estadoMensaje");
+    const listaRegalos = document.getElementById("listaRegalos");
+
+    async function cargarRegalos() {
+      try {
+        const res = await fetch(SCRIPT_URL);
+        const datos = await res.json();
+
+        if (datos.length === 0) {
+          listaRegalos.innerHTML = `<p class="sub-lista">Aún no hay regalitos anotados. ¡Sé el primero!</p>`;
+          return;
+        }
+
+        listaRegalos.innerHTML = "";
+        datos.reverse().forEach(item => {
+          const div = document.createElement("div");
+          div.className = "item-regalo";
+          div.innerHTML = `
+            <div>
+              <div class="nombre-regalo">🎀 ${escaparHTML(item.regalo)}</div>
+              <div class="quien-lleva">Llevado por: ${escaparHTML(item.invitado)}</div>
+            </div>
+            <span class="badge-reservado">Anotado</span>
+          `;
+          listaRegalos.appendChild(div);
+        });
+      } catch (error) {
+        listaRegalos.innerHTML = `<p class="sub-lista">No se pudo cargar la lista en este momento.</p>`;
+      }
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const invitado = document.getElementById("invitado").value.trim();
+      const regalo = document.getElementById("regalo").value.trim();
+
+      if (!invitado || !regalo) return;
+
+      btnEnviar.disabled = true;
+      btnEnviar.textContent = "Guardando...";
+      estadoMensaje.textContent = "";
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ invitado, regalo })
+        });
+
+        form.reset();
+        estadoMensaje.textContent = "¡Listo! Tu regalito quedó registrado con mucho amor.";
+        setTimeout(cargarRegalos, 1200);
+      } catch (error) {
+        estadoMensaje.textContent = "Hubo un error al guardar. Intenta de nuevo.";
+      } finally {
+        btnEnviar.disabled = false;
+        btnEnviar.textContent = "Registrar mi regalito";
+      }
+    });
+
+    function escaparHTML(texto) {
+      const div = document.createElement("div");
+      div.textContent = texto;
+      return div.innerHTML;
+    }
+
+    cargarRegalos();
+  </script>
+</body>
+</html>
+nsaje");
     const listaRegalos = document.getElementById("listaRegalos");
 
     async function cargarRegalos() {
